@@ -32,7 +32,14 @@
   <!-- Site wrapper -->
   <div class="wrapper">
     <?php
+      // CABEZERA
       include "model/cabezera.php";
+      // MENU LATERAL
+      include "model/menuLateral.php";
+      // CONTENIDO
+      include "model/contenido.php";
+      // PIE DE PAGINA
+      include "model/piePagina.php";
     ?>
   </div>
   <!-- ./wrapper -->
