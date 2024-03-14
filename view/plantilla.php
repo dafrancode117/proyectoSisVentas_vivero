@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="view/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="view/dist/css/adminlte.css">
+  <!-- Carga del Favicon -->
+  <link rel="icon" type="image/jpg" href="view/img/plantilla/logo.jpg">
   <!-- ========== End PLUGINS CSS ========== -->
 
   <!-- ========== Start PLUGINS JAVASCRIPT ========== -->
@@ -25,24 +27,61 @@
   <!-- AdminLTE for demo purposes -->
   <script src="view/dist/js/demo.js"></script>
   <!-- ========== End PLUGINS JAVASCRIPT ========== -->
-  
+
 </head>
 
-<body class="hold-transition sidebar-collapse sidebar-mini">
-  <!-- Site wrapper -->
-  <div class="wrapper">
-    <?php
-      // CABEZERA
-      include "model/cabezera.php";
-      // MENU LATERAL
-      include "model/menuLateral.php";
-      // CONTENIDO
-      include "model/contenido.php";
-      // PIE DE PAGINA
-      include "model/piePagina.php";
-    ?>
-  </div>
-  <!-- ./wrapper -->
+<body class="hold-transition sidebar-collapse sidebar-mini login-page img-fluid img-responsive" style="background-image: url('view/img/plantilla/bgLogin.jpg');">
+  <?php
+  //Condicion para validar si se inicio sesion al sistema
+  if (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok") {
+
+    // Inicio del contenido
+    echo '<div class="wrapper">';
+    // CABEZERA
+    include "view/module/cabezera.php";
+    // MENU LATERAL
+    include "view/module/menuLateral.php";
+
+    // CONTENIDO
+    if (isset($_GET["ruta"])) {
+
+      if (
+        $_GET["ruta"] == "inicio" ||
+        $_GET["ruta"] == "usuarios" ||
+        $_GET["ruta"] == "categorias" ||
+        $_GET["ruta"] == "productos" ||
+        $_GET["ruta"] == "clientes" ||
+        $_GET["ruta"] == "ventas" ||
+        $_GET["ruta"] == "crearVenta" ||
+        $_GET["ruta"] == "reportes"
+      ) {
+        include "view/module/" . $_GET['ruta'] . ".php";
+      } else {
+        include "view/module/404.php";
+      }
+    } else {
+      include "view/module/404.php";
+    }
+
+    /*include "model/inicio.php";
+      include "model/usuarios.php";
+      include "model/categorias.php";
+      include "model/productos.php";
+      include "model/clientes.php";
+      include "model/ventas.php";
+      include "model/crearVenta.php";
+      include "model/reportes.php";*/
+
+    // PIE DE PAGINA
+    include "view/module/piePagina.php";
+
+    echo "</div>";
+  }else{
+    // Si no cumple las validaciones, se procedera a enviar al login
+    include "view/module/login.php";
+  }
+  ?>
+
 </body>
 
 </html>

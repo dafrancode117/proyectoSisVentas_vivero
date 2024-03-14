@@ -1,7 +1,7 @@
 <!-- ========== Start BARRA LATERAL ========== -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
    <!-- Brand Logo -->
-   <a href="index3.html" class="brand-link">
+   <a href="inicio" class="brand-link">
       <img src="view/img/plantilla/logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Vivero Dannplant</span>
    </a>
@@ -16,7 +16,7 @@
                with font-awesome or any other icon font library -->
             <li class="nav-header">OPERACIONES</li>
             <li class="nav-item">
-               <a href="#" class="nav-link">
+               <a href="inicio" class="nav-link">
                   <i class="nav-icon fas fa-landmark"></i>
                   <p>
                     Inicio
@@ -24,7 +24,7 @@
                </a>
             </li>
             <li class="nav-item">
-               <a href="pages/gallery.html" class="nav-link">
+               <a href="usuarios" class="nav-link">
                   <i class="nav-icon far fa-user"></i>
                   <p>
                      Usuario
@@ -32,7 +32,7 @@
                </a>
             </li>
             <li class="nav-item">
-               <a href="pages/kanban.html" class="nav-link">
+               <a href="categorias" class="nav-link">
                   <i class="nav-icon fas fa-spa"></i>
                   <p>
                      Categorias
@@ -40,7 +40,7 @@
                </a>
             </li>
             <li class="nav-item">
-               <a href="pages/kanban.html" class="nav-link">
+               <a href="productos" class="nav-link">
                   <i class="nav-icon fas fa-leaf"></i>
                   <p>
                      Productos
@@ -48,7 +48,7 @@
                </a>
             </li>
             <li class="nav-item">
-               <a href="pages/kanban.html" class="nav-link">
+               <a href="clientes" class="nav-link">
                   <i class="nav-icon fas fa-users"></i>
                   <p>
                      Clientes
@@ -65,38 +65,24 @@
                </a>
                <ul class="nav nav-treeview">
                   <li class="nav-item">
-                     <a href="pages/mailbox/mailbox.html" class="nav-link">
+                     <a href="ventas" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Administrar Ventas</p>
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a href="pages/mailbox/compose.html" class="nav-link">
+                     <a href="crearVenta" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Crear Venta</p>
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a href="pages/mailbox/read-mail.html" class="nav-link">
+                     <a href="reportes" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Reporte de Ventas</p>
                      </a>
                   </li>
                </ul>
-            </li>
-
-            <li class="nav-header">MISCELLANEOUS</li>
-            <li class="nav-item">
-               <a href="iframe.html" class="nav-link">
-                  <i class="nav-icon fas fa-ellipsis-h"></i>
-                  <p>Tabbed IFrame Plugin</p>
-               </a>
-            </li>
-            <li class="nav-item">
-               <a href="https://adminlte.io/docs/3.1/" class="nav-link">
-                  <i class="nav-icon fas fa-file"></i>
-                  <p>Documentation</p>
-               </a>
             </li>
             
          </ul>
