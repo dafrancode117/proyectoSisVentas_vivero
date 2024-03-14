@@ -1,3 +1,8 @@
+<!-- Iniciamos Sesiones -->
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -30,7 +35,7 @@
 
 </head>
 
-<body class="hold-transition sidebar-collapse sidebar-mini login-page img-fluid img-responsive" style="background-image: url('view/img/plantilla/bgLogin.jpg');">
+<body class="hold-transition sidebar-collapse sidebar-mini img-fluid img-responsive" style="background-image: url('view/img/plantilla/bgLogin.jpg');">
   <?php
   //Condicion para validar si se inicio sesion al sistema
   if (isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok") {
@@ -53,24 +58,16 @@
         $_GET["ruta"] == "clientes" ||
         $_GET["ruta"] == "ventas" ||
         $_GET["ruta"] == "crearVenta" ||
-        $_GET["ruta"] == "reportes"
-      ) {
-        include "view/module/" . $_GET['ruta'] . ".php";
+        $_GET["ruta"] == "reportes" ||
+        $_GET["ruta"] == "salir"
+        ) {
+          include "view/module/" . $_GET['ruta'] . ".php";
       } else {
         include "view/module/404.php";
       }
     } else {
       include "view/module/404.php";
     }
-
-    /*include "model/inicio.php";
-      include "model/usuarios.php";
-      include "model/categorias.php";
-      include "model/productos.php";
-      include "model/clientes.php";
-      include "model/ventas.php";
-      include "model/crearVenta.php";
-      include "model/reportes.php";*/
 
     // PIE DE PAGINA
     include "view/module/piePagina.php";
