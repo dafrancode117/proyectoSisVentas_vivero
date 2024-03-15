@@ -27,10 +27,10 @@
                         <!-- TABLA DE USUARIOS-->
                         <div class="row">
                             <div class="col-12 table-responsive">
-                                <table class="table table-striped">
+                                <table class="table table-striped tablas">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th class="">Id</th>
                                             <th>Nombre</th>
                                             <th>Usuario</th>
                                             <th>Foto</th>
@@ -84,24 +84,64 @@
 
 <!-- ========== Start MODAL AGREGAR USUARIO ========== -->
 <div class="modal fade" id="modalAgregarUsuario">
-        <div class="modal-dialog">
-          <div class="modal-content bg-secondary">
-            <div class="modal-header">
-              <h4 class="modal-title">Secondary Modal</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p>One fine body&hellip;</p>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-outline-light">Save changes</button>
-            </div>
-          </div>
-          <!-- /.modal-content -->
+    <div class="modal-dialog">
+        <div class="modal-content bg-light">
+            <form role="form" method="POST" enctype="multipart/form-data"> <!-- Habilitamos la subida de archivos con multipart/form-data --> 
+                <div class="modal-header" style="background:#001f3f;">
+                    <h4 class="modal-title text-white">Agregar Usuario</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <h4>Datos</h4>
+                        <div class="form-group">
+                            <label for="exampleSelectBorder">Nombre</label>
+                            <input type="text" class="form-control form-control-border" id="exampleInputBorder" placeholder="Ingresa el nombre" name="nuevoNombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleSelectBorder">Usuario</label>
+                            <input type="text" class="form-control form-control-border" id="exampleInputBorder" placeholder="Ingresa el nombre de usuario" name="nuevoUsuario" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleSelectBorder">Contraseña</label>
+                            <input type="password" class="form-control form-control-border" id="exampleInputBorder" placeholder="Ingresa la contraseña" name="nuevoPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleSelectBorder">Tipo de Perfil</label>
+                            <select class="custom-select form-control-border" id="exampleSelectBorder" name="nuevoPerfil">
+                                <option value="Administrador">Administrador</option>
+                                <option value="Especial">Especial</option>
+                                <option value="Vendedor">Vendedor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleSelectBorder">Foto de Perfil</label>
+                            <div class="text-center">
+                                <input type="file" class="form-control-file form-control-border" id="nuevaFoto" name="nuevaFoto" placeholder="Ingresa el nombre de usuario">
+                                <br>
+                                <img src="view/img/usuarios/default/anonymus.png" alt="Foto de perfil" class="img-thumbnail" width="100px">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-danger btn-secondary text-white" data-dismiss="modal">Salir</button>
+                    <button type="submit" class="btn btn-secondary btn-outline-dark text-white">Guardar Cambios</button>
+                </div>
+
+                <!-- Objeto para guardar el usuario -->
+                <?php
+                    $crearUsuario = new ControladorUsuarios();
+                    $crearUsuario -> ctrCrearUsuario();
+                ?>
+
+            </form>
         </div>
-        <!-- /.modal-dialog -->
-      </div>
+    </div>
+</div>
 <!-- ========== End MODAL AGREGAR USUARIO ========== -->

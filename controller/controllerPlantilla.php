@@ -1,7 +1,7 @@
 <?php
 
 class ControladorPlantilla{
-   public function ctrPlantilla(){
+   static public function ctrPlantilla(){
       include_once "view/plantilla.php";
    }
 }
