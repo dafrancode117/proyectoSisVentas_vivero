@@ -97,7 +97,8 @@ session_start();
     include "view/module/login.php";
   }
   ?>
-
+  <!-- Archivo JS para la subida de fotos al formulario de registro -->
+  <script src="view/js/usuarios.js"></script>
 </body>
 
 </html>

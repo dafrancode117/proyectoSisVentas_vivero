@@ -121,9 +121,10 @@
                         <div class="form-group">
                             <label for="exampleSelectBorder">Foto de Perfil</label>
                             <div class="text-center">
-                                <input type="file" class="form-control-file form-control-border" id="nuevaFoto" name="nuevaFoto" placeholder="Ingresa el nombre de usuario">
+                                <input type="file" class="form-control-file form-control-border nuevaFoto" name="nuevaFoto" placeholder="Ingresa el nombre de usuario">
                                 <br>
-                                <img src="view/img/usuarios/default/anonymus.png" alt="Foto de perfil" class="img-thumbnail" width="100px">
+                                <p class="help-block">Peso máximo de la foto 2MB</p>
+                                <img src="view/img/usuarios/default/anonymus.png" alt="Foto de perfil" class="img-thumbnail previsualizar" width="100px">
                             </div>
                         </div>
                     </div>
