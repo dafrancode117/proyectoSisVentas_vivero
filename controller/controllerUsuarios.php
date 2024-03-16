@@ -8,6 +8,11 @@ class ControladorUsuarios
          $regex1 = "/^[a-zA-Z0-9]+$/"; // Expresion regular
 
          if (preg_match($regex1, $_POST["ingresoUsuario"] && preg_match($regex1, $_POST["ingresoPassword"]))) { // validamos la regex
+            
+            // Habilitamos el ingreso con la contraseña encriptada
+            //$encriptar = password_hash($_POST["ingresoPassword"], PASSWORD_DEFAULT);
+            $encriptar = crypt($_POST["ingresoPassword"], '$2a$07$usesomesillystringforsalt$');
+
             $tabla = "usuarios";
             $item = "usuario";
             $valor = $_POST["ingresoUsuario"];
@@ -15,7 +20,7 @@ class ControladorUsuarios
             $respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla, $item, $valor); // solicitamos una respuesta del model
 
             // Validacion de acceso al sistema
-            if ($respuesta["usuario"] == $_POST["ingresoUsuario"] && $respuesta["password"] == $_POST["ingresoPassword"]) {
+            if ($respuesta["usuario"] == $_POST["ingresoUsuario"] && $respuesta["password"] == $encriptar) {
                //echo "<br><div class='alert alert-success mx-4 text-center'>Bienvenido al Sistema</div>";
                $_SESSION["iniciarSesion"] = "ok";
                echo "<script> window.location = 'inicio'; </script>";
@@ -69,11 +74,13 @@ class ControladorUsuarios
                }
             }
 
-
+            // ENCRIPTAMOS LA CONTRASEÑA DEL USUARIO
             $tabla = "usuarios";
+            //$encriptar = password_hash($_POST["nuevoPassword"], PASSWORD_DEFAULT);
+            $encriptar = crypt($_POST["nuevoPassword"], '$2a$07$usesomesillystringforsalt$');
             $datos = array("nombre" => $_POST["nuevoNombre"], 
                            "usuario" => $_POST["nuevoUsuario"], 
-                           "password" => $_POST["nuevoPassword"], 
+                           "password" => $encriptar, 
                            "perfil" => $_POST["nuevoPerfil"], 
                            "foto" => $ruta);
 
