@@ -65,7 +65,7 @@
                                             
                                             echo '<td>'.$value["foto"].'</td>
                                             <td><button class="btn btn-success btn-xs">Activado</button></td>
-                                            <td>01-03-2024</td>
+                                            <td>'.$value["ultimoLogin"].'</td>
                                             <td>
                                                 <div class="btn-group">
                                                     <button class="btn btn-warning"><i class="fas fa-pen"></i></button>
