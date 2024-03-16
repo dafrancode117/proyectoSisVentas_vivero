@@ -41,12 +41,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Administrador</td>
-                                            <td>Administrador</td>
-                                            <td><img src="view/img/usuarios/default/anonymus.png" class="img-thumbnail" width="40px" alt=""></td>
-                                            <td>Administrador</td>
+                                        <?php
+                                        // Enviamos los parametros nulos de item y valor, ya que deseamos hacer una lectura de todos los registros de la tabla y no solo de una fila
+                                        $item = null;
+                                        $valor = null;
+
+                                        $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+
+                                        // bucle foreach para iterar los valores de la tabla
+                                        foreach ($usuarios as $key => $value) {
+                                            echo '
+                                                <tr>
+                                            <td>'.$value["id"].'</td>
+                                            <td>'.$value["nombreCompleto"].'</td>
+                                            <td>'.$value["usuario"].'</td>';
+
+                                            // condicional para cargar si el usuario tiene o no tiene una foto de perfil como usuario
+                                            if($value["foto"] != ""){
+                                                echo '<td><img src="'.$value["foto"].'" class="img-thumbnail" width="40px" alt=""></td>';
+                                            }else{
+                                                echo '<td><img src="view/img/usuarios/default/anonymus.png" class="img-thumbnail" width="40px" alt=""></td>';
+                                            }
+                                            
+                                            echo '<td>'.$value["foto"].'</td>
                                             <td><button class="btn btn-success btn-xs">Activado</button></td>
                                             <td>01-03-2024</td>
                                             <td>
@@ -56,6 +73,11 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                                ';
+                                        }
+                                        ?>
+
+
                                     </tbody>
                                 </table>
                             </div>
@@ -86,7 +108,7 @@
 <div class="modal fade" id="modalAgregarUsuario">
     <div class="modal-dialog">
         <div class="modal-content bg-light">
-            <form role="form" method="POST" enctype="multipart/form-data"> <!-- Habilitamos la subida de archivos con multipart/form-data --> 
+            <form role="form" method="POST" enctype="multipart/form-data"> <!-- Habilitamos la subida de archivos con multipart/form-data -->
                 <div class="modal-header" style="background:#001f3f;">
                     <h4 class="modal-title text-white">Agregar Usuario</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -137,8 +159,8 @@
 
                 <!-- Objeto para guardar el usuario -->
                 <?php
-                    $crearUsuario = new ControladorUsuarios();
-                    $crearUsuario -> ctrCrearUsuario();
+                $crearUsuario = new ControladorUsuarios();
+                $crearUsuario->ctrCrearUsuario();
                 ?>
 
             </form>

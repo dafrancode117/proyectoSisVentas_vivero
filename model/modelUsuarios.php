@@ -5,12 +5,18 @@ class ModeloUsuarios
 {
    static public function mdlMostrarUsuarios($tabla, $item, $valor)
    {
-      $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item =  :$item");
-      $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR); // enlazamos el parametro
-      $stmt->execute();
-      return $stmt->fetch(); // retornamos una sola fila de nuestra tablaS
+      if($item != null){
+         $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item =  :$item");
+         $stmt->bindParam(":" . $item, $valor, PDO::PARAM_STR); // enlazamos el parametro
+         $stmt->execute();
+         return $stmt->fetch(); // retornamos una sola fila de nuestra tablas
+      }else{
+         $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+         $stmt->execute();
+         return $stmt->fetchAll(); // retornamos todas las filas de la tabla
+      }
    
-      $stmt->closeCursor(); // cerramos conexion con la bd 
+      //$stmt->closeCursor(); // cerramos conexion con la bd 
       $stmt = null; // vaciamos el objeto
    }
 
