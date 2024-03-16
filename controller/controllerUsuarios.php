@@ -23,6 +23,13 @@ class ControladorUsuarios
             if ($respuesta["usuario"] == $_POST["ingresoUsuario"] && $respuesta["password"] == $encriptar) {
                //echo "<br><div class='alert alert-success mx-4 text-center'>Bienvenido al Sistema</div>";
                $_SESSION["iniciarSesion"] = "ok";
+               // VARIABLES DE SESION PARA EL USUARIO LOGEADO
+               $_SESSION["id"] = $respuesta["id"];
+               $_SESSION["nombreCompleto"] = $respuesta["nombreCompleto"];
+               $_SESSION["usuario"] = $respuesta["usuario"];
+               $_SESSION["foto"] = $respuesta["foto"];
+               $_SESSION["perfil"] = $respuesta["perfil"];
+               
                echo "<script> window.location = 'inicio'; </script>";
             } else {
                echo "<br><div class='alert alert-danger mx-4 text-center'>Error al ingresar, sus datos son incorrectos, vuelva a intentarlo</div>";

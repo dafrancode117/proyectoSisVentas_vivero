@@ -27,8 +27,18 @@
       <ul class="nav navbar-nav ml-auto">
          <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-               <img src="view/img/usuarios/default/anonymus.png" class="user-image" alt="UsuarioImagen">
-               <span class="hidden-xa">Usuario Administrador</span>
+               <!-- Condicional para los usuarios que no tengan foto de perfil -->
+               <?php 
+                  if($_SESSION["foto"] != ""){
+                     echo "<img src='" . $_SESSION['foto'] . "' class='user-image' alt='UsuarioImagen'>";
+
+                  }else{
+                     echo '<img src="view/img/usuarios/default/anonymus.png" class="user-image" alt="UsuarioImagen">';
+                  }
+               ?>
+               
+               <!-- Invocamos la variable de sesion del controlador usuario -->
+               <span class="hidden-xa"><?php echo $_SESSION["nombreCompleto"]; ?></span>
             </a>
             <!-- Dropdown de los usuarios -->
             <ul class="dropdown-menu">
