@@ -30,3 +30,33 @@ $(".nuevaFoto").change(function(){
       })
    }
 })
+
+//EDITAR USUARIO
+$(".btnEditarUsuario").click(function(){
+   let idUsuario = $(this).attr("idUsuario");
+   
+   let datos = new FormData();
+   datos.append("idUsuario", idUsuario);
+
+   $.ajax({
+      url:"ajax/usuariosAjax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "json",
+      success: function(respuesta){
+         $("#editarNombre").val(respuesta["nombre"]); // mostramos el valor de nombre
+         $("#editarUsuario").val(respuesta["usuario"]); // mostramos el valor de usuario
+         $("#editarPerfil").html(respuesta["perfil"]); // como es un option tenemos que imprimir en el html
+         $("#editarPerfil").val(respuesta["perfil"]); // lo guardamos en el value, en caso de que el perfil no se modifique
+         $("#passwordActual").val(respuesta["password"]); // mostramos el valor de password, pero se mostrara oculto
+         $("#fotoActual").val(respuesta["foto"]); // mostramos el valor de foto, pero se mostrara oculto
+         // validamos y mostramos el valor de foto:
+         if(respuesta["foto"] != ""){
+            $(".previsualizar").attr("src", respuesta["foto"]);
+         }
+      }
+   });
+})

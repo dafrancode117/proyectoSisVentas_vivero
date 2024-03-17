@@ -33,8 +33,6 @@ session_start();
   <script src="view/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="view/dist/js/adminlte.min.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="view/dist/js/demo.js"></script>
   <!-- DataTables  & Plugins -->
   <script src="view/plugins/datatables/jquery.dataTables.min.js"></script>
   <script src="view/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -97,6 +95,8 @@ session_start();
     include "view/module/login.php";
   }
   ?>
+  <!-- AdminLTE for demo purposes -->
+  <script src="view/dist/js/demo.js"></script>
   <!-- Archivo JS para la subida de fotos al formulario de registro -->
   <script src="view/js/usuarios.js"></script>
 </body>
