@@ -63,9 +63,16 @@
                                                 echo '<td><img src="view/img/usuarios/default/anonymus.png" class="img-thumbnail" width="40px" alt=""></td>';
                                             }
 
-                                            echo '<td>' . $value["foto"] . '</td>
-                                            <td><button class="btn btn-success btn-xs">Activado</button></td>
-                                            <td>' . $value["ultimoLogin"] . '</td>
+                                            echo '<td>' . $value["perfil"] . '</td>';
+
+                                            // condicional para establecer los estados
+                                            if ($value["estado"] != 0) {
+                                                echo '<td><button class="btn btn-success btn-xs btnActivar" idUsuario="' . $value["id"] . '" estadoUsuario="0">Activado</button></td>';
+                                            } else {
+                                                echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="' . $value["id"] . '" estadoUsuario="1">Desactivado</button></td>';
+                                            }
+
+                                            echo '<td>' . $value["ultimoLogin"] . '</td>
                                             <td>
                                                 <div class="btn-group">
                                                     <button class="btn btn-warning btnEditarUsuario" id="editarNombre" idUsuario="' . $value["id"] . '" data-toggle="modal"  data-target="#modalEditarUsuario"><i class="fas fa-pen"></i></button>
@@ -81,21 +88,8 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- /.col -->
                         </div>
-                        <!-- /.row -->
 
-                        <div class="row no-print">
-                            <div class="col-12">
-                                <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                                <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
-                                    Payment
-                                </button>
-                                <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                    <i class="fas fa-download"></i> Generate PDF
-                                </button>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
@@ -191,11 +185,11 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleSelectBorder">Usuario</label>
-                            <input type="text" class="form-control form-control-border" value="" name="editarUsuario" id="editarUsuario" required>
+                            <input type="text" class="form-control form-control-border" value="" name="editarUsuario" id="editarUsuario" readonly>
                         </div>
                         <div class="form-group">
                             <label for="exampleSelectBorder">Contraseña</label>
-                            <input type="password" class="form-control form-control-border" placeholder="Escriba una nueva contraseña" name="editarPassword" id="editarPassword" required>
+                            <input type="password" class="form-control form-control-border" placeholder="Escriba una nueva contraseña" name="editarPassword" id="editarPassword">
                             <!-- Input oculto para guardar el password en caso de no ser cambiado -->
                             <input type="hidden" name="passwordActual" id="passwordActual">
                         </div>

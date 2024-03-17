@@ -33,9 +33,9 @@ $(".nuevaFoto").change(function(){
 
 //EDITAR USUARIO
 $(".btnEditarUsuario").click(function(){
-   let idUsuario = $(this).attr("idUsuario");
+   var idUsuario = $(this).attr("idUsuario");
    
-   let datos = new FormData();
+   var datos = new FormData();
    datos.append("idUsuario", idUsuario);
 
    $.ajax({
@@ -47,9 +47,10 @@ $(".btnEditarUsuario").click(function(){
       processData: false,
       dataType: "json",
       success: function(respuesta){
-         $("#editarNombre").val(respuesta["nombre"]); // mostramos el valor de nombre
+         $("#editarNombre").val(respuesta["nombreCompleto"]); // mostramos el valor de nombre
          $("#editarUsuario").val(respuesta["usuario"]); // mostramos el valor de usuario
          $("#editarPerfil").html(respuesta["perfil"]); // como es un option tenemos que imprimir en el html
+         
          $("#editarPerfil").val(respuesta["perfil"]); // lo guardamos en el value, en caso de que el perfil no se modifique
          $("#passwordActual").val(respuesta["password"]); // mostramos el valor de password, pero se mostrara oculto
          $("#fotoActual").val(respuesta["foto"]); // mostramos el valor de foto, pero se mostrara oculto
@@ -59,4 +60,39 @@ $(".btnEditarUsuario").click(function(){
          }
       }
    });
+})
+
+// ACTIVAR USUARIO
+$(".btnActivar").click(function(){
+   var idUsuario = $(this).attr("idUsuario");
+   var estadoUsuario = $(this).attr("estadoUsuario");
+
+   var datos = new FormData();
+   datos.append("activarId", idUsuario);
+   datos.append("activarUsuario", estadoUsuario);
+
+   $.ajax({
+      url:"ajax/usuariosAjax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function(respuesta){
+
+      }
+   })
+
+   if(estadoUsuario == 0){
+      $(this).removeClass("btn-success");
+      $(this).addClass("btn-danger");
+      $(this).html("Desactivado");
+      $(this).attr("estadoUsuario", 1);
+   }else{
+      $(this).addClass("btn-success");
+      $(this).removeClass("btn-danger");
+      $(this).html("Activado");
+      $(this).attr("estadoUsuario", 0);
+   }
+
 })
