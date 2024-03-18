@@ -76,7 +76,7 @@
                                             <td>
                                                 <div class="btn-group">
                                                     <button class="btn btn-warning btnEditarUsuario" id="editarNombre" idUsuario="' . $value["id"] . '" data-toggle="modal"  data-target="#modalEditarUsuario"><i class="fas fa-pen"></i></button>
-                                                    <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                    <button class="btn btn-danger btnEliminarUsuario" idUsuario="' . $value["id"] . '" fotoUsuario="' . $value["foto"] . '" usuario="' . $value["usuario"] . '"><i class="fas fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -233,4 +233,9 @@
         </div>
     </div>
 </div>
+<?php
+$borrarUsuario = new ControladorUsuarios();
+$borrarUsuario->ctrBorrarUsuario();
+
+?>
 <!-- ========== End MODAL EDITAR USUARIO ========== -->

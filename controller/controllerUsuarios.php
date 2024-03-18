@@ -33,10 +33,26 @@ class ControladorUsuarios
                   $_SESSION["foto"] = $respuesta["foto"];
                   $_SESSION["perfil"] = $respuesta["perfil"];
 
-                  echo "<script> window.location = 'inicio'; </script>";
-               }else{
-                  
-               echo "<br><div class='alert alert-danger mx-4 text-center'>El usuario aún no esta activado</div>";
+                  // Registro de Fecha y Hora del ultimo Login del usuario
+                  date_default_timezone_set('America/La_Paz');
+
+                  $fecha = date('Y-m-d');
+                  $hora = date('H:i:s');
+                  $fechaActual = $fecha . ' ' . $hora;
+
+                  $item1 = "ultimoLogin";
+                  $valor1 = $fechaActual;
+                  $item2 = "id";
+                  $valor2 = $respuesta["id"];
+
+                  $ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
+                  if ($ultimoLogin == "ok") {
+                     // Recin lo redireccionamos a la pagina de inicio
+                     echo "<script> window.location = 'inicio'; </script>";
+                  }
+               } else {
+
+                  echo "<br><div class='alert alert-danger mx-4 text-center'>El usuario aún no esta activado</div>";
                }
             } else {
                echo "<br><div class='alert alert-danger mx-4 text-center'>Error al ingresar, sus datos son incorrectos, vuelva a intentarlo</div>";
@@ -133,7 +149,7 @@ class ControladorUsuarios
    }
 
    // EDICION DE USUARIO
-   public function ctrEditarUsuario()
+   static public function ctrEditarUsuario()
    {
       if (isset($_POST["editarUsuario"])) {
          $regexCarEsp = "/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/"; // expresion regular que nos permite introducir caracteres especiales como acentos y la letra ñ
@@ -226,6 +242,31 @@ class ControladorUsuarios
                   text: 'Intentelo de nuevo por favor'
                 });
                </script>"; // Utilizando el sweet alert de Jquery
+         }
+      }
+   }
+
+   // ELIMINAR USUARIO
+   static function ctrBorrarUsuario()
+   {
+      if (isset($_GET["idUsuario"])) {
+         $tabla = "usuarios";
+         $datos = $_GET["idUsuario"];
+
+         if ($_GET["fotoUsuario"] != "") {
+            unlink($_GET["fotoUsuario"]);
+            rmdir("view/img/usuarios".$_GET["usuario"]);
+         }
+
+         $respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla, $datos);
+         if ($respuesta == "ok") {
+            echo '<script>
+         Swal.fire({
+            title: "Eliminado",
+            text: "El Usuario ha sido eliminado",
+            icon: "success",
+         });
+               </script>'; // Utilizando el sweet alert de Jquery
          }
       }
    }

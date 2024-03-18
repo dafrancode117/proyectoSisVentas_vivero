@@ -76,4 +76,19 @@ class ModeloUsuarios
       $stmt->closeCursor(); // cerramos conexion con la bd 
       $stmt = null; // vaciamos el objeto
    }
+
+   // MODELO DELETE (CRUD)
+   static public function mdlBorrarUsuario($tabla, $datos){
+      $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+      // Enlazamos los parametros
+      $stmt->bindParam(':id', $datos, PDO::PARAM_INT);
+
+      if($stmt->execute()){
+         return "ok";
+      }else{
+         return "error";
+      }
+      $stmt->closeCursor(); // cerramos conexion con la bd 
+      $stmt = null; // vaciamos el objeto
+   }
 }
